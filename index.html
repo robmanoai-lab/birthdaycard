@@ -86,35 +86,32 @@
             margin-bottom: 20px;
         }
 
-        /* Update: Lingkaran menjadi Wadah Foto */
-        .photo-circle {
-            width: 150px; /* Ukuran sedikit diperbesar agar foto terlihat jelas */
+        /* Update: Lingkaran menjadi Bingkai Foto */
+        .photo-frame {
+            width: 150px;
             height: 150px;
             border-radius: 50%;
             border: 3px solid var(--gold-accent);
-            margin: 10px auto;
+            margin: 20px auto 10px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            overflow: hidden; /* Agar foto terpotong bulat */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            cursor: pointer; /* Memberi petunjuk bahwa bisa diklik */
         }
 
-        .photo-circle img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Foto akan mengisi lingkaran dengan proporsional */
+            object-fit: cover;
         }
 
-        /* Style baru untuk display umur di bawah foto */
+        /* Style untuk Teks Umur di bawah foto */
         .age-text {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-family: 'Playfair Display', serif;
             color: var(--gold-accent);
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .verse-container {
@@ -172,11 +169,6 @@
         .dot.active {
             background: var(--silver);
         }
-
-        /* Input file disembunyikan */
-        #photo-input {
-            display: none;
-        }
         
     </style>
 </head>
@@ -193,30 +185,26 @@
             <h1 style="font-size: 2rem;">Kartu Ucapan</h1>
             <p>Spesial untuk:</p>
             <h2 id="name-display-1" style="color: var(--gold-accent); font-size: 1.5rem;">[Nama]</h2>
-            
-            <button class="btn" style="margin-top: 10px; font-size: 0.8rem;" onclick="document.getElementById('photo-input').click()">+ Pilih Foto</button>
-            <input type="file" id="photo-input" accept="image/*">
-            
             <button class="btn btn-primary" onclick="startExperience()">Buka Kartu</button>
         </div>
 
         <div class="slide" id="slide-2">
             <h1>Selamat Ulang Tahun</h1>
             
-            <div class="photo-circle" onclick="document.getElementById('photo-input').click()">
-                <img id="photo-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Foto">
+            <div class="photo-frame">
+                <img src="foto_st_edward_purba.jpg" alt="St. Edward Purba">
             </div>
-            
-            <div class="age-text"><span id="age-display">XX</span> Tahun</div>
 
-            <p>Berkat & Penyertaan Tuhan</p>
+            <div class="age-text" id="age-display">XX</div>
+            
+            <p>Tahun Berkat & Penyertaan Tuhan</p>
             <button class="btn" onclick="nextSlide(3)">Lihat Ayat >> </button>
         </div>
 
         <div class="slide" id="slide-3">
             <div class="verse-container">
-                "Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan."
-                <span class="verse-ref">Yeremia 29:11</span>
+                "Lord, thank You for guiding my life until today. The Lord will fulfill His purpose for me."
+                <span class="verse-ref">Mazmur 138:8</span>
             </div>
             <button class="btn" onclick="nextSlide(4)">Lanjut >> </button>
         </div>
@@ -240,10 +228,9 @@
     </div>
 
     <script>
-        // --- KONFIGURASI TEMPLATE ---
         const config = {
             nama: "St. Edward Purba",
-            umur: "60", // Contoh umur diisi
+            umur: "59", // Saya isikan 60 sebagai contoh, silakan ubah di sini
             pengirim: "St. Robert Manihuruk"
         };
 
@@ -252,20 +239,6 @@
         document.getElementById('sender-display').innerText = config.pengirim;
 
         const music = document.getElementById('bg-music');
-        const photoInput = document.getElementById('photo-input');
-        const photoPreview = document.getElementById('photo-preview');
-
-        // Logika Mengunggah Foto dari Storage Lokal
-        photoInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    photoPreview.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
 
         function startExperience() {
             attemptPlayMusic();
@@ -277,7 +250,9 @@
             music.muted = false;
             var promise = music.play();
             if (promise !== undefined) {
-                promise.then(_ => {}).catch(error => {
+                promise.then(_ => {
+                    console.log("Musik dimulai.");
+                }).catch(error => {
                     console.log("Autoplay dicegah.");
                 });
             }
