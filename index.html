@@ -88,8 +88,8 @@
 
         /* Update: Lingkaran menjadi Bingkai Foto */
         .photo-frame {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border: 3px solid var(--gold-accent);
             margin: 20px auto 10px;
@@ -106,7 +106,7 @@
             object-fit: cover;
         }
 
-        /* Style untuk Teks Umur di bawah foto */
+        /* Teks Umur di bawah foto */
         .age-text {
             font-size: 2.5rem;
             font-family: 'Playfair Display', serif;
@@ -192,7 +192,7 @@
             <h1>Selamat Ulang Tahun</h1>
             
             <div class="photo-frame">
-                <img src="foto_st_edward_purba.jpg" alt="St. Edward Purba">
+                <img src="profil.jpg" alt="Profil">
             </div>
 
             <div class="age-text" id="age-display">XX</div>
@@ -203,8 +203,8 @@
 
         <div class="slide" id="slide-3">
             <div class="verse-container">
-                "Lord, thank You for guiding my life until today. The Lord will fulfill His purpose for me."
-                <span class="verse-ref">Mazmur 138:8</span>
+                "This is the day that the Lord has made; let us rejoice and be glad in it."
+                <span class="verse-ref">Mazmur 118:24</span>
             </div>
             <button class="btn" onclick="nextSlide(4)">Lanjut >> </button>
         </div>
@@ -229,9 +229,9 @@
 
     <script>
         const config = {
-            nama: "St. Edward Purba",
-            umur: "59", // Saya isikan 60 sebagai contoh, silakan ubah di sini
-            pengirim: "St. Robert Manihuruk"
+            nama: "St. Affan S.Saragih",
+            umur: "A new age, a thankful heart", // Sesuaikan umur di sini
+            pengirim: "St. Robert Manihuruk/br. Girsang"
         };
 
         document.getElementById('name-display-1').innerText = config.nama;
@@ -250,9 +250,7 @@
             music.muted = false;
             var promise = music.play();
             if (promise !== undefined) {
-                promise.then(_ => {
-                    console.log("Musik dimulai.");
-                }).catch(error => {
+                promise.then(_ => {}).catch(error => {
                     console.log("Autoplay dicegah.");
                 });
             }
